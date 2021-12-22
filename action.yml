@@ -38,6 +38,7 @@ runs:
       with:
         aws-region: ${{ inputs.aws_region }}
         role-to-assume: ${{ inputs.aws_iam_role }}
+      if: ${{ inputs.aws_iam_role }}     
     - name: Add default.region
       shell: bash
       run: aws configure set default.region ${{ inputs.aws_region }}
