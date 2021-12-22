@@ -8,8 +8,8 @@ inputs:
   aws_secret_access_key:
     description: 'AWS SECRET ACCESS KEY'
     required: false
-  aws_region:
-    description: 'AWS IAM_ROLE'
+  aws_iam_role:
+    description: 'AWS IAM ROLE'
     required: false
   aws_region:
     description: 'AWS REGION'
