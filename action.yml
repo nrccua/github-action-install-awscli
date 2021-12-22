@@ -23,7 +23,7 @@ runs:
     - name: Add AWS CLI Package
       shell: bash
       run: sudo apt-get update && sudo apt-get -y install awscli
-     if a keypair is provided, use this to configure the cli
+    #  if a keypair is provided, use this to configure the cli
     - name: Add aws_access_key_id
       shell: bash
       run: aws configure set aws_access_key_id ${{ inputs.aws_key_id }}
