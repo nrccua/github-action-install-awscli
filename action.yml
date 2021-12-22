@@ -24,14 +24,14 @@ runs:
       shell: bash
       run: sudo apt-get update && sudo apt-get -y install awscli
     # if a keypair is provided, use this to configure the cli
-    - name: Add aws_access_key_id
-      shell: bash
-      run: aws configure set aws_access_key_id ${{ inputs.aws_key_id }}
-      if: ${{ inputs.aws_key_id }} != ''
-    - name: Add aws_secret_access_key
-      shell: bash
-      run: aws configure set aws_secret_access_key ${{ inputs.aws_secret_access_key }}
-      if: ${{ inputs.aws_secret_access_key }} != ''      
+    #- name: Add aws_access_key_id
+    #  shell: bash
+    #  run: aws configure set aws_access_key_id ${{ inputs.aws_key_id }}
+    #  if: ${{ inputs.aws_key_id }} != ''
+    #- name: Add aws_secret_access_key
+    #  shell: bash
+    #  run: aws configure set aws_secret_access_key ${{ inputs.aws_secret_access_key }}
+    #  if: ${{ inputs.aws_secret_access_key }} != ''      
     # if a role is provided, assume this role
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
