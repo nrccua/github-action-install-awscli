@@ -7,12 +7,16 @@ Enables the use of the `aws` command line in your Github action. See [Managing a
 - uses: nrccua/github-action-install-awscli
   with:
     # AWS Access Key
-    # Required: True
+    # Required: False
     aws_key_id: ''
 
     # AWS Secret Access Key
-    # Required: True
+    # Required: False
     aws_secret_access_key: ''
+
+    # AWS IAM Role ARN
+    # Required: False
+    aws_iam_role: ''
 
     # The AWS Region to use
     # Default: us-east-1
@@ -22,6 +26,7 @@ Enables the use of the `aws` command line in your Github action. See [Managing a
 <!-- end usage -->
 
 # Example
+# Using an IAM role is preferred, although a key ID and secret access key are supported
 ```yaml
 name: Deploy To S3
 
@@ -41,8 +46,9 @@ jobs:
     - name: Install AWS CLI
       uses: nrccua/github-action-install-awscli@master
       with:
-        aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY_ID }}
+        #aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        #aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY_ID }}
+        aws_iam_role: ${{ secrets.AWS_IAM_ROLE }}
         aws_region: ${{ secrets.AWS_REGION }}
     - name: Copy files to S3
       shell: bash
