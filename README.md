@@ -1,5 +1,7 @@
 Enables the use of the `aws` command line in your Github action. See [Managing access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) on generating an access key/secret key pair.
 
+Using an IAM role is preferred, although a key ID and secret access key are supported
+
 # Usage
 
 <!-- start usage -->
@@ -26,7 +28,7 @@ Enables the use of the `aws` command line in your Github action. See [Managing a
 <!-- end usage -->
 
 # Example
-# Using an IAM role is preferred, although a key ID and secret access key are supported
+
 ```yaml
 name: Deploy To S3
 
