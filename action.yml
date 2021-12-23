@@ -4,14 +4,18 @@ description: Installs and logs into the AWS CLI for other steps to use
 inputs:
   aws_key_id:
     description: 'AWS ACCESS KEY ID'
-    required: true
+    required: false
   aws_secret_access_key:
     description: 'AWS SECRET ACCESS KEY'
-    required: true
+    required: false
+  aws_iam_role:
+    description: 'AWS IAM ROLE'
+    required: false
   aws_region:
     description: 'AWS REGION'
     required: true
     default: 'us-east-1'
+
 
 runs:
   using: "composite"
@@ -19,12 +23,22 @@ runs:
     - name: Add AWS CLI Package
       shell: bash
       run: sudo apt-get update && sudo apt-get -y install awscli
+    #  if a keypair is provided, use this to configure the cli
     - name: Add aws_access_key_id
       shell: bash
       run: aws configure set aws_access_key_id ${{ inputs.aws_key_id }}
+      if: ${{ inputs.aws_key_id }} 
     - name: Add aws_secret_access_key
       shell: bash
       run: aws configure set aws_secret_access_key ${{ inputs.aws_secret_access_key }}
+      if: ${{ inputs.aws_secret_access_key }}       
+    # if a role is provided, assume this role
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-region: ${{ inputs.aws_region }}
+        role-to-assume: ${{ inputs.aws_iam_role }}
+      if: ${{ inputs.aws_iam_role }}     
     - name: Add default.region
       shell: bash
       run: aws configure set default.region ${{ inputs.aws_region }}
